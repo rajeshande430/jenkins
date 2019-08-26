@@ -3,21 +3,32 @@ JENKINS
 ------------------------------------------------
 jenkins is nothing but a scheduler.
 in linux if we want to install some repeated tasks we create cronjobs, using cronjobs we can schedule the jobs.
+jenkins can run anything as long as it is command line.
 
 cronjobs+steroids = jenkins
 
 steroids is an additional funtionality which enables to notify if something goes wrong in the jobs
 
+jenkins widely used for CIntegration & Cdevelopment Cdevelopment engines
 
+jenkins executes commands on server inorder to do the same jenkins needs the following
+		user (which user has to run is organization control) (some companies uses service accounts)
+		privilages
+		path
+default user user for jenkins is JENKIN
 
+what is service accounts ? ? ?
+			
 
 
 
 ------------------------------------------------
-PLUGIN
+PLUGIN - 2nd flavor of jenkins
 ------------------------------------------------
 additional functionality + UI support to jenkins
 plugin is written in java
 
 (for some applications installations our developers might not write the installation steps in command line in this cases we use something called PLUGINS,
 in that case developers write plugin code and they say with this plugin in jenkin we can install the software.)
+
+the way plugins are developed are changes from one system to system
