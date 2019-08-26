@@ -1,5 +1,5 @@
 ------------------------------------------------
-JENKINS
+JENKINS 	
 ------------------------------------------------
 jenkins is nothing but a scheduler.
 in linux if we want to install some repeated tasks we create cronjobs, using cronjobs we can schedule the jobs.
@@ -32,3 +32,33 @@ plugin is written in java
 in that case developers write plugin code and they say with this plugin in jenkin we can install the software.)
 
 the way plugins are developed are changes from one system to system
+
+---------------------------------------------------
+Installation of Jenkins in different environments
+	jenkin supports the below versions
+	2.164 (2019-02) and newer: Java 8 or Java 11
+	2.54 (2017-04) and newer: Java 8
+	1.612 (2015-05) and newer: Java 7
+---------------------------------------------------
+WINDOWS
+---------------------------------------------------
+	run powershell as admin
+	choco install jre8
+	open the URL https://jenkins.io/download/ & download the windows supported jenkins package and install it
+	java -jar .\jenkins.war
+	after installation, please note down the administratot code from the powershell which will be required as a first login to the console
+	http://localhost:8080
+--------------------------------------------------------------------------------------------------------
+UBUNTU 18.4 (URL https://www.digitalocean.com/community/tutorials/how-to-install-jenkins-on-ubuntu-18-04)
+--------------------------------------------------------------------------------------------------------
+	sudo apt-get update
+	wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
+	sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+	sudo apt-get install jenkins
+	sudo systemctl start jenkins
+	sudo systemctl status jenkins
+	sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+	
+	
+	
+
