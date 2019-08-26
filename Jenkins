@@ -1,0 +1,23 @@
+------------------------------------------------
+JENKINS
+------------------------------------------------
+jenkins is nothing but a scheduler.
+in linux if we want to install some repeated tasks we create cronjobs, using cronjobs we can schedule the jobs.
+
+cronjobs+steroids = jenkins
+
+steroids is an additional funtionality which enables to notify if something goes wrong in the jobs
+
+
+
+
+
+
+------------------------------------------------
+PLUGIN
+------------------------------------------------
+additional functionality + UI support to jenkins
+plugin is written in java
+
+(for some applications installations our developers might not write the installation steps in command line in this cases we use something called PLUGINS,
+in that case developers write plugin code and they say with this plugin in jenkin we can install the software.)
