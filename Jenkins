@@ -71,7 +71,36 @@ what happens once jenkins installed.
 	5. once we run the project jobname1, a workspace folder will be created under the following path /var/lib/jenkins/workspace/<jobname1>
 	   all the job information will be stored under the worspace directory
 
+git merge <branch> - all the commits that are created under branch will be updated at master git login
+example	:	git checkout <branch>
+		:	git log
+					B5
+					B4
+					B3
+					B2
+					B1
+			git checkout <master>
+			git log
+					M2
+					M1
+			git merge <branch>
+			git log
+					B5
+					B4
+					B3
+					B2
+					B1
+					M2
+					M1
+git rebase <master>
+git rebase -i HEAD~3
+edit
+drop
+git commit --amend
+git rebase --continue
 
+git cherry-pick <commitid>
+git cherry-pick <CID3..CID1>
 
 
 
