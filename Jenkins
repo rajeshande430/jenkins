@@ -69,6 +69,7 @@ what happens once jenkins installed.
 	3. all projects or jobs that we create using the GUI will be under the following path /var/lib/jenkins/jobs/<jobname1>
 	4. once the project is created, a config.xml file will be created under /var/lib/jenkins/jobs/<jobname1>/config.xml
 	5. once we run the project jobname1, a workspace folder will be created under the following path /var/lib/jenkins/workspace/<jobname1>
+	   all the job information will be stored under the worspace directory
 
 
 
