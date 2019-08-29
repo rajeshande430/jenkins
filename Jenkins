@@ -52,12 +52,32 @@ WINDOWS
 UBUNTU 18.4 (URL https://www.digitalocean.com/community/tutorials/how-to-install-jenkins-on-ubuntu-18-04)
 --------------------------------------------------------------------------------------------------------
 	sudo apt-get update
-	wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
+	wget -q -O - https://pkg.jenkins.io/debian/jenkins-ci.org.key | sudo apt-key add -
 	sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+		sudo apt-get update
 	sudo apt-get install jenkins
-	sudo systemctl start jenkins
+	
 	sudo systemctl status jenkins
+Incase if the service not running use the below command
+	sudo systemctl start jenkins
+	
 	sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+
+what happens once jenkins installed.
+	1. user called jenkins will be created
+	2. jenkins installation directory will /var/lib/jenkins
+	3. all projects or jobs that we create using the GUI will be under the following path /var/lib/jenkins/jobs/<jobname1>
+	4. once the project is created, a config.xml file will be created under /var/lib/jenkins/jobs/<jobname1>/config.xml
+	5. once we run the project jobname1, a workspace folder will be created under the following path /var/lib/jenkins/workspace/<jobname1>
+
+
+
+
+
+
+
+
+
 	
 	
 	
