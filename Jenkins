@@ -70,7 +70,8 @@ what happens once jenkins installed.
 	4. once the project is created, a config.xml file will be created under /var/lib/jenkins/jobs/<jobname1>/config.xml
 	5. once we run the project jobname1, a workspace folder will be created under the following path /var/lib/jenkins/workspace/<jobname1>
 	   all the job information will be stored under the worspace directory
-
+	6. target folder also creates in the same folder /var/lib/jenkins/workspace/target
+	
 git merge <branch> - all the commits that are created under branch will be updated at master git login
 example	:	git checkout <branch>
 		:	git log
@@ -101,6 +102,45 @@ git rebase --continue
 
 git cherry-pick <commitid>
 git cherry-pick <CID3..CID1>
+
+
+----------------------------------------------------------------------------
+adding NODES to the JENKINS MASTER - java and maven 
+----------------------------------------------------------------------------
+1.				root@ip-172-31-17-221:~# adduser jenkins
+				Adding user `jenkins' ...
+				Adding new group `jenkins' (1001) ...
+				Adding new user `jenkins' (1001) with group `jenkins' ...
+				Creating home directory `/home/jenkins' ...
+				Copying files from `/etc/skel' ...
+				Enter new UNIX password:
+				Retype new UNIX password:
+				passwd: password updated successfully
+				Changing the user information for jenkins
+				Enter the new value, or press ENTER for the default
+						Full Name []:
+						Room Number []:
+						Work Phone []:
+						Home Phone []:
+						Other []:
+				Is the information correct? [Y/n] y
+				
+2.				root@ip-172-31-17-221:~# visudo			
+				# Members of the admin group may gain root privileges
+				%admin ALL=(ALL) ALL
+				jenkins ALL=(ALL:ALL) NOPASSWD:ALL
+				
+3. 				root@ip-172-31-17-221:~# vi /etc/ssh/sshd_config				
+				# To disable tunneled clear text passwords, change to no here!
+				PasswordAuthentication yes
+				#PermitEmptyPasswords no
+
+4. 				root@ip-172-31-17-221:~# service ssh restart
+5. 	try logging into the machine using ssh jenkins@ipaddress and see if the jenkins user is asking for a password for authentication, please makesure
+	the below softwares must be present because we are packaging the code using maven software
+	java
+	maven
+
 
 
 
