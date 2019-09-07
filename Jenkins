@@ -23,7 +23,7 @@ what is service accounts ? ? ?
 
 
 ------------------------------------------------
-PLUGIN - 2nd flavor of jenkins
+PLUGIN - 2nd flavor of jenkins - installing the plugin is not installing the software
 ------------------------------------------------
 additional functionality + UI support to jenkins
 plugin is written in java
@@ -102,12 +102,71 @@ git rebase --continue
 
 git cherry-pick <commitid>
 git cherry-pick <CID3..CID1>
+-----------------------------------------------------------------------------
+FREESTYLE & PIPELINE
 
+freestyle cannot be version controlled but pipeline can be version controlled.
 
+-----------------------------------------------------------------------------
+DISTRIBUTED BUILDS | linux master to linux node we connect using ssh	
+				   | linux master to windows node we connect using JNLP (java network launching protocol)
+-----------------------------------------------------------------------------
+jenkins pipeline
+
+what is pipeline ?
+it is nothing but scripted jenkins
+for scripting this, we can use a language called groovy, groovy is a java based language.
+it is not necessary that the script present in jenkins, it can be present in git repository.
+whenever jenkins building, it can read the script from the git repository and build the acctivity.
+if i have any change in the build, it can be version controlled automatically.
+the scripting laguage which we write in the pipeline is GROOVY, from groovy we can call scripts or python 
+
+COMPONENTS OF PIPELINE
+					1. Node 
+					2. stage
+	ubuntu is label
+node('ubuntu'){
+}
+
+stage('build process'){
+}
+-----------------------------------------------------------------------------
+							node('ubuntu')
+							{
+								stage('git')
+								{
+									// something
+								}
+								stage('packaging')
+								{
+									//packaging commands
+								}
+							}	
+
+in jenkins pipeline, we can see the stage wise logs
+-----------------------------------------------------------------------------
+PARAMETERS - it is nothing but a variable
+-----------------------------------------------------------------------------
+	function add()
+	{
+	return 4+5
+	}
+	
+					function add(a=4,b=5)
+					{
+					return a+b
+					}
+
+this project is parameterized - string parameter
+echo $branch_name
+sh ./upload.sh $username $password
+
+if we are using a parameter in updtream and downstream jobs, we need to install a plugin called parametorized plugin
+	
 ----------------------------------------------------------------------------
 adding NODES to the JENKINS MASTER - java and maven 
 ----------------------------------------------------------------------------
-1.				root@ip-172-31-17-221:~# adduser jenkins
+1.				root@ip-172-31-17-221:~# adduser jenkins or service accounts
 				Adding user `jenkins' ...
 				Adding new group `jenkins' (1001) ...
 				Adding new user `jenkins' (1001) with group `jenkins' ...
@@ -129,6 +188,8 @@ adding NODES to the JENKINS MASTER - java and maven
 				# Members of the admin group may gain root privileges
 				%admin ALL=(ALL) ALL
 				jenkins ALL=(ALL:ALL) NOPASSWD:ALL
+							or
+				usermod -aG group user
 				
 3. 				root@ip-172-31-17-221:~# vi /etc/ssh/sshd_config				
 				# To disable tunneled clear text passwords, change to no here!
@@ -141,7 +202,40 @@ adding NODES to the JENKINS MASTER - java and maven
 	java
 	maven
 
+6. once the job is finished, if we run on any label (means on any connected node), /home/jenkins/workspace/target/surefire-reports
+																				   /home/jenkins/workkspace
+	once the node is connected, remoting.jar file will be downloaded on the node and it internally uses JNLP.
+7. connecting the jenkins node to the master using KNOW HOST FILE VERIFICATION STRATEGY
+	we need to login to the jenkins node from master through ssh, while logging it ask for adding permenantly to the host file, where the jenkins node ip address details will be added to the .ssh/known_host file list and we need to copy this known_host file from master to the jenkins slave also called as jenkins master, use the below commands to copy the same
+	scp .ssh/known_host ubuntu@ipaddress:/home/jenkins
+	
+	
+mvn compile
+mvn test
+mvn package
 
+code -> git server ->
+CIntegration
+CDeploy
+Cdelivery
+-----------------------------------------------------------------------------
+BUILD PERIODICALLY
+-----------------------------------------------------------------------------
+(0–59)  (0–23)  (1–31) (1–12)    The day of the week (0–7) where 0 and 7 are Sunday
+MINUTE  HOUR    DOM	   MONTH	DOW 
+
+* * * *   -> every minute
+
+------------------------------------------------------------------------------
+POLL SCM  - whenever any change happens in git, build job automatically triggers
+------------------------------------------------------------------------------
+(0–59)  (0–23)  (1–31) (1–12)    The day of the week (0–7) where 0 and 7 are Sunday
+MINUTE  HOUR    DOM	   MONTH	DOW 
+
+* * * *   -> every minute
+
+for 500 developers we will schedule with the * * * * * 
+for 20 developers we can use poll scm due to samll number of employes, whenever we get the commit automatically jod triggers
 
 
 
