@@ -123,7 +123,7 @@ the scripting laguage which we write in the pipeline is GROOVY, from groovy we c
 
 COMPONENTS OF PIPELINE
 					1. Node 
-					2. stage
+					2. stage		this is a block{}
 	ubuntu is label
 node('ubuntu'){
 }
@@ -218,9 +218,9 @@ code -> git server ->
 CIntegration
 CDeploy
 Cdelivery
------------------------------------------------------------------------------
+------------------------------------------------------------------------------
 BUILD PERIODICALLY
------------------------------------------------------------------------------
+------------------------------------------------------------------------------
 (0–59)  (0–23)  (1–31) (1–12)    The day of the week (0–7) where 0 and 7 are Sunday
 MINUTE  HOUR    DOM	   MONTH	DOW 
 
@@ -237,10 +237,89 @@ MINUTE  HOUR    DOM	   MONTH	DOW
 for 500 developers we will schedule with the * * * * * 
 for 20 developers we can use poll scm due to samll number of employes, whenever we get the commit automatically jod triggers
 
+a = getvalue();
+
+if a!=null
+	print(a.test)
+------------------------------------------------------------------------------
+SONARQUBE SCANS
+static code complilers - check the code with the rules that we have configured
+						 error, warnings, information, critical
+every organization has a QUALITY GATE- 
+						 no errors && no critical failures
+this toll will help wheather we can improve the code quality
+
+UNIT TEST
+			code coverage (to measure wheather tests are good or not)
+			1. Line coverage
+			2. symbol coverage
+			3. branch coverage
+this is a static code scan, since we integrate the sonarqube in jenkins pipeline, whenever the developers comitts the code, using POLLSCAM we will scan the code
+
+code quality report will be taken out and given to the developers
+
+31 video
+CONDITIONAL BUILDS:
+generate code build only when the branch name is master
+if $branch_name = 'master'
+PARLLEL BUILDS - VIDEO 31 : 34minut
+
+stage{				this is a block
+	steps('')		this is a block	
+		parallel
+		a: {}
+		b: {}
+}
+
+RUNNING SAME JOB PARALLELY ON 2 DIFFERENT NODES - YES using the parallel pipeline code (https://jenkins.io/blog/2017/09/25/declarative-1/)
+pipeline {
+    agent none
+    stages {
+        stage('Run Tests') {
+            parallel {
+                stage('Test On Windows') {
+                    agent {
+                        label "windows"
+                    }
+                    steps {
+                        bat "run-tests.bat"
+                    }
+                    post {
+                        always {
+                            junit "**/TEST-*.xml"
+                        }
+                    }
+                }
+                stage('Test On Linux') {
+                    agent {
+                        label "linux"
+                    }
+                    steps {
+                        sh "run-tests.sh"
+                    }
+                    post {
+                        always {
+                            junit "**/TEST-*.xml"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+------------------------------------------------------------------------------
+
+JENKINS DSL LIBRARY (this is nothing but in the pipeline project,i am calling one script which is common in many project, what we can do is that we can create a jenkin DSL library and call that library from the pipeline
 
 
+mysql
+sonarqubemysqlpassword
 
+DB name  - sonarqube 
+	   sonarqubepassword
 
+testing
+c1fd0818c3cbf7132312e32a9bad8c5c12a4f7a8
 
 	
 	
